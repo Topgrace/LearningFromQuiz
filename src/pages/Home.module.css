@@ -1,0 +1,122 @@
+.home {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-md);
+  padding-bottom: var(--space-3xl);
+}
+
+/* --- Hero --- */
+.hero {
+  position: relative;
+  padding: var(--space-3xl) var(--space-md);
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-glow);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+  animation: fadeInUp 0.6s ease both;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: var(--font-size-hero);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.03em;
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+/* Floating emojis */
+.heroDecor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.floatingEmoji {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: float 4s ease-in-out infinite;
+}
+
+.floatingEmoji:nth-child(1) { top: 15%; left: 8%; }
+.floatingEmoji:nth-child(2) { top: 25%; right: 10%; }
+.floatingEmoji:nth-child(3) { bottom: 20%; left: 15%; }
+.floatingEmoji:nth-child(4) { bottom: 30%; right: 12%; }
+
+/* --- Lessons Section --- */
+.lessons {
+  padding-top: var(--space-xl);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
