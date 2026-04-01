@@ -4,7 +4,7 @@ import { curriculum } from '../data/lessons'
 import styles from './Home.module.css'
 
 /* 구현 완료된 lesson ID 세트 */
-const IMPLEMENTED = new Set(['1-1-01-01'])
+const IMPLEMENTED = new Set(['1-1-01-01', '1-1-01-02'])
 
 export default function Home() {
     const [activeTab, setActiveTab] = useState(0)

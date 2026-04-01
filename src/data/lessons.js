@@ -183,6 +183,7 @@ export const lessonData = {
 // 구현 완료된 레슨 ID 맵 (id → { totalSteps })
 const implementedLessons = {
     '1-1-01-01': { totalSteps: 9 },
+    '1-1-01-02': { totalSteps: 11 },
 }
 
 export const curriculum = [

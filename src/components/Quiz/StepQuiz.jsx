@@ -1,5 +1,16 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import { InlineMath } from 'react-katex'
+import 'katex/dist/katex.min.css'
 import styles from './StepQuiz.module.css'
+
+/* 수식 패턴이 포함되면 KaTeX, 아니면 plain text */
+const MATH_PATTERN = /[\^\\]|frac|times|sqrt|cdot/
+function OptionText({ text }) {
+    if (MATH_PATTERN.test(text)) {
+        return <span className={styles.optionText}><InlineMath math={text} /></span>
+    }
+    return <span className={styles.optionText}>{text}</span>
+}
 
 export default function StepQuiz({ action, onCorrect }) {
     const [selected, setSelected] = useState(null)
@@ -49,10 +60,7 @@ export default function StepQuiz({ action, onCorrect }) {
                         onClick={() => handleSelect(i)}
                         disabled={showResult}
                     >
-                        <span className={styles.optionLabel}>
-                            {String.fromCharCode(9312 + i)}
-                        </span>
-                        <span className={styles.optionText}>{option}</span>
+                        <OptionText text={option} />
                     </button>
                 ))}
             </div>

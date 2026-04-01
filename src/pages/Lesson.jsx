@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { lessonData } from '../data/lessons'
+import { exponentiationData } from '../data/exponentiation'
 import { MathDisplay } from '../components/MathBlock/MathBlock'
 import StepQuiz from '../components/Quiz/StepQuiz'
 import styles from './Lesson.module.css'
@@ -10,7 +11,10 @@ export default function Lesson() {
     const [currentStep, setCurrentStep] = useState(0)
 
     // 구현된 레슨 ID → lessonData 매핑
-    const lessonMap = { '1-1-01-01': lessonData }
+    const lessonMap = {
+        '1-1-01-01': lessonData,
+        '1-1-01-02': exponentiationData,
+    }
     const lesson = lessonMap[id] || lessonData
     const step = lesson.steps[currentStep]
     const totalSteps = lesson.steps.length
@@ -82,6 +86,10 @@ export default function Lesson() {
 
                 {step.tableData && (
                     <DivisorTable data={step.tableData} />
+                )}
+
+                {step.powerTableData && (
+                    <PowerTable data={step.powerTableData} />
                 )}
 
                 {step.classification && (
@@ -168,6 +176,43 @@ function ClassificationChart({ data }) {
                     <p className={styles.classValue}>{value}</p>
                 </div>
             ))}
+        </div>
+    )
+}
+
+/* Power table (matrix: base × exponent) */
+function PowerTable({ data }) {
+    const { bases, exponents, values } = data
+    return (
+        <div className={styles.tableWrap}>
+            <table className={`${styles.table} ${styles.powerTable}`}>
+                <thead>
+                    <tr>
+                        <th className={styles.powerCorner}>밑 ╲ 지수</th>
+                        {exponents.map(exp => (
+                            <th key={exp} className={styles.powerExpHeader}>
+                                <sup>{exp}</sup>
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {bases.map((base, i) => (
+                        <tr key={base} style={{ animationDelay: `${i * 0.08}s` }}>
+                            <td className={styles.powerBaseCell}>{base}</td>
+                            {values[base].map((val, j) => (
+                                <td key={j} className={styles.powerValueCell}>
+                                    <span className={styles.powerExpr}>
+                                        {base}<sup>{exponents[j]}</sup>
+                                    </span>
+                                    <span className={styles.powerEquals}>=</span>
+                                    <span className={styles.powerResult}>{val.toLocaleString()}</span>
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }

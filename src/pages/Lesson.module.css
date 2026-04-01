@@ -304,3 +304,92 @@
   50% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
+
+/* --- Power Table (matrix) --- */
+.powerTable {
+  font-size: var(--font-size-sm);
+}
+
+.powerCorner {
+  font-size: var(--font-size-xs) !important;
+  color: var(--color-text-muted) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap;
+}
+
+.powerExpHeader {
+  font-size: var(--font-size-base) !important;
+  color: var(--color-accent) !important;
+}
+
+.powerExpHeader sup {
+  font-size: 0.85em;
+}
+
+.powerBaseCell {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  background: var(--color-surface-elevated);
+}
+
+.powerValueCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.powerExpr {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.powerExpr sup {
+  font-size: 0.75em;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.powerEquals {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  margin: 0 2px;
+}
+
+.powerResult {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+}
+
+/* Ensure table cells use flex for powerValueCell */
+.powerTable td.powerValueCell {
+  display: table-cell;
+}
+
+.powerTable td.powerValueCell > * {
+  display: inline;
+}
+
+@media (max-width: 480px) {
+  .powerTable {
+    font-size: var(--font-size-xs);
+  }
+  
+  .powerBaseCell {
+    font-size: var(--font-size-base) !important;
+  }
+  
+  .powerResult {
+    font-size: var(--font-size-sm);
+  }
+}
+
