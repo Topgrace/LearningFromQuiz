@@ -9,8 +9,9 @@ export default function Lesson() {
     const { id } = useParams()
     const [currentStep, setCurrentStep] = useState(0)
 
-    // For now single lesson; extend with lookup later
-    const lesson = lessonData
+    // 구현된 레슨 ID → lessonData 매핑
+    const lessonMap = { '1-1-01-01': lessonData }
+    const lesson = lessonMap[id] || lessonData
     const step = lesson.steps[currentStep]
     const totalSteps = lesson.steps.length
     const progress = ((currentStep + 1) / totalSteps) * 100
